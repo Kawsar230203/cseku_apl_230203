@@ -20,8 +20,13 @@ public class TaskController {
     }
 
     public void updateTaskStatus(int id, String status) {
-        taskManagement.updateTaskStatus(id, status);
-        taskView.displayMessage("Task status updated successfully!");
+        Task task = taskManagement.getTask(id);
+        if (task != null) {
+            taskManagement.updateTaskStatus(id, status);
+            taskView.displayMessage("Task status updated successfully!");
+        } else {
+            taskView.displayMessage("Task not found.");
+        }
     }
 
     public void displayTask(int id) {
